@@ -1,0 +1,71 @@
+﻿<Window x:Class="SpiralArt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpiralArt"
+        mc:Ignorable="d"
+        Title="Spiral Art"
+        Loaded="Window_Loaded"
+        Height="800" Width="700"
+        Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="_Menu">
+                <MenuItem Header="_Copy" Click="Copy_Click"/>
+                <MenuItem Header="_Save" Click="Save_Click"/>
+                <MenuItem Header="_Print" Click="Print_Click"/>
+                <MenuItem Header="E_xit" Click="Exit_Click"/>
+            </MenuItem>
+        </Menu>
+        
+        <Canvas x:Name="canvas" Grid.Row="1"
+                PreviewMouseDown="canvas_MouseDown"
+                PreviewMouseMove="canvas_MouseMove"
+                PreviewMouseUp="canvas_MouseUp"
+                PreviewMouseWheel="canvas_MouseWheel"
+                SizeChanged="canvas_SizeChanged"
+                Background="White"
+                ClipToBounds="True"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Ring Size" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="16" Margin="5"/>
+            <Slider x:Name="RingSize" Minimum="10" Maximum="200" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" ValueChanged="RingSize_ValueChanged" AutoToolTipPlacement="BottomRight"/>
+            <TextBlock Text="Wheel Size" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="16" Margin="40,5,5,5"/>
+            <Slider x:Name="WheelSize" Minimum="10" Maximum="200" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" ValueChanged="WheelSize_ValueChanged" AutoToolTipPlacement="BottomRight"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Pen Position" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="16" Margin="5"/>
+            <Slider x:Name="PenPos" Minimum="0" Maximum="100" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" ValueChanged="PenPos_ValueChanged" AutoToolTipPlacement="BottomRight"/>
+            <TextBlock Text="Line Width" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="16" Margin="40,5,5,5"/>
+            <Slider x:Name="LineWidth" Minimum="1" Maximum="10" MinWidth="150" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" ValueChanged="LineWidth_ValueChanged" AutoToolTipPlacement="BottomRight"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Clear" Width="50" Margin="5" Click="ClearButtonClick"/>
+            <Button Width="50" Margin="5" Click="ResetButtonClick">
+                <TextBlock TextAlignment="Center">
+                    Reset<LineBreak/>Wheel
+                </TextBlock>
+            </Button>
+            <Button Content="Color" Width="50" Margin="5" Click="ColorButtonClick"/>
+            <Button Width="50" Margin="5" Click="InvertButtonClick">
+                <TextBlock x:Name="InvertWheel" TextAlignment="Center">
+                    Wheel<LineBreak/>Outside
+                </TextBlock>
+            </Button>
+            <Button Content="Preview" Width="55" Margin="5" Click="PreviewButtonClick"/>
+            <Button Width="50" Margin="5" Click="HideDisksButtonClick">
+                <TextBlock x:Name="HideDisks" TextAlignment="Center">
+                    Hide<LineBreak/>Disks
+                </TextBlock>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
